@@ -1,6 +1,6 @@
 Name:           brotli
 Version:        0.6.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -85,6 +85,11 @@ cd ..
 # the unversioned executable is the python2 one.
 %py2_install
 %py3_install
+%{__install} -dm755 "%{buildroot}%{_mandir}/man3"
+cd docs
+for i in *.3;do
+%{__install} -m644 "$i" "%{buildroot}%{_mandir}/man3/${i}brotli"
+done
 
 %post -p /sbin/ldconfig
 
@@ -116,10 +121,13 @@ cd ..
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
-
+%{_mandir}/man3/*
 
 
 %changelog
+* Tue May 23 2017 Travis Kendrick <pouar@pouar.net> - 0.6.0-4
+- add man pages
+
 * Sun May 14 2017 Travis Kendrick <pouar@pouar.net> - 0.6.0-3
 - wrong directory for ctest
 - LICENSE not needed in -devel
