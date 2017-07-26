@@ -1,6 +1,6 @@
 Name:           brotli
 Version:        0.6.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -125,6 +125,9 @@ cd ..
 
 
 %changelog
+* Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Tue May 23 2017 Travis Kendrick <pouar@pouar.net> - 0.6.0-4
 - add man pages
 
