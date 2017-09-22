@@ -1,6 +1,6 @@
 Name:           brotli
-Version:        0.6.0
-Release:        6%{?dist}
+Version:        1.0.1
+Release:        1%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -61,8 +61,9 @@ This package installs the development files
 # fix permissions for -debuginfo
 # rpmlint will complain if I create an extra %%files section for
 # -debuginfo for this so we'll put it here instead
-%{__chmod} 644 enc/*.[ch]
-%{__chmod} 644 include/brotli/*.h
+%{__chmod} 644 c/enc/*.[ch]
+%{__chmod} 644 c/include/brotli/*.h
+%{__chmod} 644 c/tools/brotli.c
 %build
 
 mkdir -p build
@@ -77,6 +78,10 @@ cd ..
 %install
 cd build
 %make_install
+
+# I couldn't find the option to not build the static libraries
+%__rm "%{buildroot}%{_libdir}/"*.a
+
 cd ..
 # Must do the python2 install first because the scripts in /usr/bin are
 # overwritten with every setup.py install, and in general we want the
@@ -103,7 +108,7 @@ cd ..
 %{__python3} setup.py test
 
 %files
-%{_bindir}/bro
+%{_bindir}/brotli
 %{_libdir}/*.so.*
 %license LICENSE
 
@@ -125,6 +130,9 @@ cd ..
 
 
 %changelog
+* Fri Sep 22 2017 Travis Kendrick <pouar@pouar.net> - 1.0.1-1
+- update to 1.0.1
+
 * Wed Aug 02 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
