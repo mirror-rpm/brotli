@@ -1,6 +1,6 @@
 Name:           brotli
 Version:        1.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -96,9 +96,7 @@ for i in *.3;do
 %{__install} -m644 "$i" "%{buildroot}%{_mandir}/man3/${i}brotli"
 done
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %check
 cd build
@@ -130,6 +128,9 @@ cd ..
 
 
 %changelog
+* Sat Feb 03 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1.0.1-2
+- Switch to %%ldconfig_scriptlets
+
 * Fri Sep 22 2017 Travis Kendrick <pouar@pouar.net> - 1.0.1-1
 - update to 1.0.1
 
