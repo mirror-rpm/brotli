@@ -128,10 +128,10 @@ cd ..
 
 
 %changelog
-* Wed Apr 18 2018 Travis Kendrick <pouar@pouar.net> - 1.0.4-2
+* Wed Apr 18 2018 Travis Kendricouar@pouar.net> - 1.0.4-2
 - update to 1.0.4
 
-* Fri Mar 03 2018 Travis Kendrick <pouar@pouar.net> - 1.0.3-1
+* Sat Mar 03 2018 Travis Kendrick <pouar@pouar.net> - 1.0.3-1
 - update to 1.0.3
 
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.1-3
