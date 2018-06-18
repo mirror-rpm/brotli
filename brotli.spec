@@ -1,6 +1,6 @@
 Name:           brotli
 Version:        1.0.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -128,6 +128,9 @@ cd ..
 
 
 %changelog
+* Mon Jun 18 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.4-3
+- Rebuilt for Python 3.7
+
 * Wed Apr 18 2018 Travis Kendricouar@pouar.net> - 1.0.4-2
 - update to 1.0.4
 
