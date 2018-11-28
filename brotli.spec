@@ -107,10 +107,10 @@ cd ..
 
 
 %changelog
-* Wed Nov 18 2018 Travis Kendrick pouar@pouar.net> - 1.0.7-1
+* Wed Nov 28 2018 Travis Kendrick pouar@pouar.net> - 1.0.7-1
 - Update to 1.0.7
 
-* Wed Nov 18 2018 Travis Kendrick pouar@pouar.net> - 1.0.5-2
+* Wed Nov 28 2018 Travis Kendrick pouar@pouar.net> - 1.0.5-2
 - remove Python 2 support https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
 
 * Fri Jul 13 2018 Travis Kendrick pouar@pouar.net> - 1.0.5-1
