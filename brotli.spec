@@ -1,5 +1,5 @@
 Name:           brotli
-Version:        1.0.5
+Version:        1.0.7
 Release:        1%{?dist}
 Summary:        Lossless compression algorithm
 
@@ -107,6 +107,9 @@ cd ..
 
 
 %changelog
+* Wed Nov 18 2018 Travis Kendrick pouar@pouar.net> - 1.0.7-1
+- Update to 1.0.7
+
 * Wed Nov 18 2018 Travis Kendrick pouar@pouar.net> - 1.0.5-2
 - remove Python 2 support https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
 
