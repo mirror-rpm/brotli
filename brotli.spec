@@ -16,20 +16,6 @@ coding and 2nd order context modeling, with a compression ratio comparable
 to the best currently available general-purpose compression methods.
 It is similar in speed with deflate but offers more dense compression.
 
-%package -n python2-%{name}
-Summary:        Lossless compression algorithm (python 2)
-Requires: python2
-%{?python_provide:%python_provide python2-%{name}}
-
-%description -n python2-%{name}
-Brotli is a generic-purpose lossless compression algorithm that compresses
-data using a combination of a modern variant of the LZ77 algorithm, Huffman
-coding and 2nd order context modeling, with a compression ratio comparable
-to the best currently available general-purpose compression methods.
-It is similar in speed with deflate but offers more dense compression.
-This package installs a Python 2 module.
-
-
 %package -n python3-%{name}
 Requires: python3
 Summary:        Lossless compression algorithm (python 3)
@@ -72,7 +58,6 @@ cd build
     -DCMAKE_INSTALL_LIBDIR="%{_libdir}"
 %make_build
 cd ..
-%py2_build
 %py3_build
 
 %install
@@ -88,7 +73,6 @@ cd ..
 # python3 version to be the default. If, however, we're installing separate
 # executables for python2 and python3, the order needs to be reversed so
 # the unversioned executable is the python2 one.
-%py2_install
 %py3_install
 %{__install} -dm755 "%{buildroot}%{_mandir}/man3"
 cd docs
@@ -102,7 +86,6 @@ done
 cd build
 ctest -V
 cd ..
-%{__python2} setup.py test
 %{__python3} setup.py test
 
 %files
@@ -112,10 +95,6 @@ cd ..
 
 # Note that there is no %%files section for the unversioned python module
 # if we are building for several python runtimes
-%files -n python2-%{name}
-%{python2_sitearch}/*
-%license LICENSE
-
 %files -n python3-%{name}
 %{python3_sitearch}/*
 %license LICENSE
@@ -128,6 +107,9 @@ cd ..
 
 
 %changelog
+* Wed Nov 18 2018 Travis Kendrick pouar@pouar.net> - 1.0.5-2
+- remove Python 2 support https://fedoraproject.org/wiki/Changes/Mass_Python_2_Package_Removal
+
 * Fri Jul 13 2018 Travis Kendrick pouar@pouar.net> - 1.0.5-1
 - update to 1.0.5
 
