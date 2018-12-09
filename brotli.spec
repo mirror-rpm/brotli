@@ -1,13 +1,13 @@
 Name:           brotli
 Version:        1.0.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
 URL:            https://github.com/google/brotli
 Source0:        https://github.com/google/brotli/archive/v%{version}.tar.gz
 
-BuildRequires:  python2-devel python3-devel gcc-c++ gcc cmake
+BuildRequires:  python3-devel gcc-c++ gcc cmake
 
 %description
 Brotli is a generic-purpose lossless compression algorithm that compresses
@@ -68,11 +68,6 @@ cd build
 %__rm "%{buildroot}%{_libdir}/"*.a
 
 cd ..
-# Must do the python2 install first because the scripts in /usr/bin are
-# overwritten with every setup.py install, and in general we want the
-# python3 version to be the default. If, however, we're installing separate
-# executables for python2 and python3, the order needs to be reversed so
-# the unversioned executable is the python2 one.
 %py3_install
 %{__install} -dm755 "%{buildroot}%{_mandir}/man3"
 cd docs
@@ -107,6 +102,9 @@ cd ..
 
 
 %changelog
+* Sun Dec 09 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.7-2
+- Remove last python2 bits
+
 * Wed Nov 28 2018 Travis Kendrick pouar@pouar.net> - 1.0.7-1
 - Update to 1.0.7
 
