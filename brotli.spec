@@ -30,11 +30,11 @@ It is similar in speed with deflate but offers more dense compression.
 This package installs a Python 3 module.
 
 
-%package -n %{name}-devel
+%package devel
 Summary:        Lossless compression algorithm (development files)
 Requires: %{name}%{?_isa} = %{version}-%{release} 
 
-%description -n %{name}-devel
+%description devel
 Brotli is a generic-purpose lossless compression algorithm that compresses
 data using a combination of a modern variant of the LZ77 algorithm, Huffman
 coding and 2nd order context modeling, with a compression ratio comparable
@@ -94,7 +94,7 @@ cd ..
 %{python3_sitearch}/*
 %license LICENSE
 
-%files -n %{name}-devel
+%files devel
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/*
