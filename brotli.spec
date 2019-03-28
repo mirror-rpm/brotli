@@ -85,20 +85,31 @@ cd ..
 
 %files
 %{_bindir}/brotli
-%{_libdir}/*.so.*
+%{_libdir}/libbrotlicommon.so.1*
+%{_libdir}/libbrotlidec.so.1*
+%{_libdir}/libbrotlienc.so.1*
 %license LICENSE
 
 # Note that there is no %%files section for the unversioned python module
 # if we are building for several python runtimes
 %files -n python3-%{name}
-%{python3_sitearch}/*
+%{python3_sitearch}/brotli.py
+%{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}m*.so
+%{python3_sitearch}/__pycache__/brotli.cpython-%{python3_version_nodots}*.py*
+%{python3_sitearch}/Brotli-%{version}-py%{python3_version}.egg-info
 %license LICENSE
 
 %files devel
-%{_includedir}/*
-%{_libdir}/*.so
-%{_libdir}/pkgconfig/*
-%{_mandir}/man3/*
+%{_includedir}/brotli
+%{_libdir}/libbrotlicommon.so
+%{_libdir}/libbrotlidec.so
+%{_libdir}/libbrotlienc.so
+%{_libdir}/pkgconfig/libbrotlicommon.pc
+%{_libdir}/pkgconfig/libbrotlidec.pc
+%{_libdir}/pkgconfig/libbrotlienc.pc
+%{_mandir}/man3/decode.h.3brotli*
+%{_mandir}/man3/encode.h.3brotli*
+%{_mandir}/man3/types.h.3brotli*
 
 
 %changelog
