@@ -1,13 +1,17 @@
 Name:           brotli
 Version:        1.0.7
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
 URL:            https://github.com/google/brotli
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
-BuildRequires:  python3-devel gcc-c++ gcc cmake
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+BuildRequires:  cmake
+BuildRequires:  python%{python3_pkgversion}-devel
+BuildRequires:  python%{python3_pkgversion}-setuptools
 
 %description
 Brotli is a generic-purpose lossless compression algorithm that compresses
@@ -16,12 +20,11 @@ coding and 2nd order context modeling, with a compression ratio comparable
 to the best currently available general-purpose compression methods.
 It is similar in speed with deflate but offers more dense compression.
 
-%package -n python3-%{name}
-Requires: python3
+%package -n python%{python3_pkgversion}-%{name}
 Summary:        Lossless compression algorithm (python 3)
-%{?python_provide:%python_provide python3-%{name}}
+%{?python_provide:%python_provide python%{python3_pkgversion}-%{name}}
 
-%description -n python3-%{name}
+%description -n python%{python3_pkgversion}-%{name}
 Brotli is a generic-purpose lossless compression algorithm that compresses
 data using a combination of a modern variant of the LZ77 algorithm, Huffman
 coding and 2nd order context modeling, with a compression ratio comparable
@@ -92,7 +95,7 @@ cd ..
 
 # Note that there is no %%files section for the unversioned python module
 # if we are building for several python runtimes
-%files -n python3-%{name}
+%files -n python%{python3_pkgversion}-%{name}
 %{python3_sitearch}/brotli.py
 %{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}m*.so
 %{python3_sitearch}/__pycache__/brotli.cpython-%{python3_version_nodots}*.py*
@@ -113,6 +116,9 @@ cd ..
 
 
 %changelog
+* Thu Mar 28 2019 Carl George <carl@george.computer> - 1.0.7-4
+- EPEL compatibility
+
 * Thu Jan 31 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.7-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
