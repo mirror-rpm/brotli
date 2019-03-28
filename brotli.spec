@@ -47,11 +47,11 @@ This package installs the development files
 # fix permissions for -debuginfo
 # rpmlint will complain if I create an extra %%files section for
 # -debuginfo for this so we'll put it here instead
-%{__chmod} 644 c/enc/*.[ch]
-%{__chmod} 644 c/include/brotli/*.h
-%{__chmod} 644 c/tools/brotli.c
-%build
+chmod 644 c/enc/*.[ch]
+chmod 644 c/include/brotli/*.h
+chmod 644 c/tools/brotli.c
 
+%build
 mkdir -p build
 cd build
 %cmake .. -DCMAKE_INSTALL_PREFIX="%{_prefix}" \
@@ -65,14 +65,14 @@ cd build
 %make_install
 
 # I couldn't find the option to not build the static libraries
-%__rm "%{buildroot}%{_libdir}/"*.a
+rm "%{buildroot}%{_libdir}/"*.a
 
 cd ..
 %py3_install
-%{__install} -dm755 "%{buildroot}%{_mandir}/man3"
+install -dm755 "%{buildroot}%{_mandir}/man3"
 cd docs
 for i in *.3;do
-%{__install} -m644 "$i" "%{buildroot}%{_mandir}/man3/${i}brotli"
+install -m644 "$i" "%{buildroot}%{_mandir}/man3/${i}brotli"
 done
 
 %ldconfig_scriptlets
