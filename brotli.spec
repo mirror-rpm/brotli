@@ -1,12 +1,15 @@
 Name:           brotli
 Version:        1.0.7
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
 URL:            https://github.com/google/brotli
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
+%if 0%{?rhel} == 7
+BuildRequires: devtoolset-7-toolchain, devtoolset-7-libatomic-devel
+%endif
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
@@ -55,6 +58,9 @@ chmod 644 c/include/brotli/*.h
 chmod 644 c/tools/brotli.c
 
 %build
+%if 0%{?rhel} == 7
+. /opt/rh/devtoolset-7/enable
+%endif
 mkdir -p build
 cd build
 %cmake .. -DCMAKE_INSTALL_PREFIX="%{_prefix}" \
@@ -64,6 +70,9 @@ cd ..
 %py3_build
 
 %install
+%if 0%{?rhel} == 7
+. /opt/rh/devtoolset-7/enable
+%endif
 cd build
 %make_install
 
@@ -81,6 +90,9 @@ done
 %ldconfig_scriptlets
 
 %check
+%if 0%{?rhel} == 7
+. /opt/rh/devtoolset-7/enable
+%endif
 cd build
 ctest -V
 cd ..
@@ -116,6 +128,9 @@ cd ..
 
 
 %changelog
+* Sat Apr 20 2019 Orion Poplawski <orion@nwra.com> - 1.0.7-5
+- Build with devtoolset-7 on EPEL7 to fix aarch64 builds
+
 * Thu Mar 28 2019 Carl George <carl@george.computer> - 1.0.7-4
 - EPEL compatibility
 
