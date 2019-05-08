@@ -97,7 +97,7 @@ cd ..
 # if we are building for several python runtimes
 %files -n python%{python3_pkgversion}-%{name}
 %{python3_sitearch}/brotli.py
-%{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}m*.so
+%{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}*.so
 %{python3_sitearch}/__pycache__/brotli.cpython-%{python3_version_nodots}*.py*
 %{python3_sitearch}/Brotli-%{version}-py%{python3_version}.egg-info
 %license LICENSE
