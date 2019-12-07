@@ -1,6 +1,6 @@
 Name:           brotli
 Version:        1.0.7
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -8,13 +8,14 @@ URL:            https://github.com/google/brotli
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 %if 0%{?rhel} == 7
-BuildRequires: devtoolset-7-toolchain, devtoolset-7-libatomic-devel
+BuildRequires:  devtoolset-7-toolchain, devtoolset-7-libatomic-devel
 %endif
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  cmake
 BuildRequires:  python%{python3_pkgversion}-devel
 BuildRequires:  python%{python3_pkgversion}-setuptools
+Requires: lib%{name}%{?_isa} = %{version}-%{release}
 
 %description
 Brotli is a generic-purpose lossless compression algorithm that compresses
@@ -22,6 +23,17 @@ data using a combination of a modern variant of the LZ77 algorithm, Huffman
 coding and 2nd order context modeling, with a compression ratio comparable
 to the best currently available general-purpose compression methods.
 It is similar in speed with deflate but offers more dense compression.
+
+%package -n libbrotli
+Summary:        Library for brotli lossless compression algorithm
+
+%description -n libbrotli
+Brotli is a generic-purpose lossless compression algorithm that compresses
+data using a combination of a modern variant of the LZ77 algorithm, Huffman
+coding and 2nd order context modeling, with a compression ratio comparable
+to the best currently available general-purpose compression methods.
+It is similar in speed with deflate but offers more dense compression.
+
 
 %package -n python%{python3_pkgversion}-%{name}
 Summary:        Lossless compression algorithm (python 3)
@@ -38,7 +50,8 @@ This package installs a Python 3 module.
 
 %package devel
 Summary:        Lossless compression algorithm (development files)
-Requires: %{name}%{?_isa} = %{version}-%{release} 
+Requires: %{name}%{?_isa} = %{version}-%{release}
+Requires: lib%{name}%{?_isa} = %{version}-%{release}
 
 %description devel
 Brotli is a generic-purpose lossless compression algorithm that compresses
@@ -100,19 +113,21 @@ cd ..
 
 %files
 %{_bindir}/brotli
+
+%files -n libbrotli
+%license LICENSE
 %{_libdir}/libbrotlicommon.so.1*
 %{_libdir}/libbrotlidec.so.1*
 %{_libdir}/libbrotlienc.so.1*
-%license LICENSE
 
 # Note that there is no %%files section for the unversioned python module
 # if we are building for several python runtimes
 %files -n python%{python3_pkgversion}-%{name}
+%license LICENSE
 %{python3_sitearch}/brotli.py
 %{python3_sitearch}/_brotli.cpython-%{python3_version_nodots}*.so
 %{python3_sitearch}/__pycache__/brotli.cpython-%{python3_version_nodots}*.py*
 %{python3_sitearch}/Brotli-%{version}-py%{python3_version}.egg-info
-%license LICENSE
 
 %files devel
 %{_includedir}/brotli
@@ -128,6 +143,9 @@ cd ..
 
 
 %changelog
+* Sat Dec  7 2019 Peter Robinson <pbrobinson@fedoraproject.org> 1.0.7-9
+- Splil out the libs to a separate package
+
 * Thu Oct 03 2019 Miro Hrončok <mhroncok@redhat.com> - 1.0.7-8
 - Rebuilt for Python 3.8.0rc1 (#1748018)
 
