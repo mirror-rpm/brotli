@@ -1,6 +1,6 @@
 Name:           brotli
-Version:        1.0.7
-Release:        14%{?dist}
+Version:        1.0.9
+Release:        1%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
@@ -103,7 +103,6 @@ done
 . /opt/rh/devtoolset-7/enable
 %endif
 %ctest
-%{__python3} setup.py test
 
 %files
 %{_bindir}/brotli
@@ -131,12 +130,16 @@ done
 %{_libdir}/pkgconfig/libbrotlicommon.pc
 %{_libdir}/pkgconfig/libbrotlidec.pc
 %{_libdir}/pkgconfig/libbrotlienc.pc
+%{_mandir}/man3/constants.h.3brotli*
 %{_mandir}/man3/decode.h.3brotli*
 %{_mandir}/man3/encode.h.3brotli*
 %{_mandir}/man3/types.h.3brotli*
 
 
 %changelog
+* Wed Sep 30 2020 Travis Kendrick <pouar@pouar.net> - 1.0.9-1
+- Update to 1.0.9 (#1872932)
+
 * Wed Aug 12 2020 Carl George <carl@george.computer> - 1.0.7-14
 - Update cmake invocation rhbz#1863298
 
