@@ -1,11 +1,13 @@
 Name:           brotli
 Version:        1.0.9
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Lossless compression algorithm
 
 License:        MIT
 URL:            https://github.com/google/brotli
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+
+Patch0:        09b0992b6acb7faa6fd3b23f9bc036ea117230fc.patch
 
 %if 0%{?rhel} == 7
 BuildRequires:  devtoolset-7-toolchain, devtoolset-7-libatomic-devel
@@ -62,6 +64,7 @@ It is similar in speed with deflate but offers more dense compression.
 This package installs the development files
 
 %prep
+%autopatch -p1
 %autosetup
 # fix permissions for -debuginfo
 # rpmlint will complain if I create an extra %%files section for
@@ -137,6 +140,9 @@ done
 
 
 %changelog
+* Thu Oct 01 2020 Travis Kendrick <pouar@pouar.net> - 1.0.9-2
+- Fix pc file (#1884364)
+
 * Wed Sep 30 2020 Travis Kendrick <pouar@pouar.net> - 1.0.9-1
 - Update to 1.0.9 (#1872932)
 
