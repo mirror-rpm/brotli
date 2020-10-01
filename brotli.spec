@@ -140,7 +140,7 @@ done
 
 %changelog
 * Thu Oct 01 2020 Travis Kendrick <pouar@pouar.net> - 1.0.9-3
-- Apparently %autosetup calls %patch on its own
+- Apparently %%autosetup calls %%patch on its own
 
 * Thu Oct 01 2020 Travis Kendrick <pouar@pouar.net> - 1.0.9-2
 - Fix pc file (#1884364)
